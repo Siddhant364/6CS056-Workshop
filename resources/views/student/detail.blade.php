@@ -1,47 +1,54 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Details</title>
-</head>
-<body>
 
-<h1>Student Details</h1>
+<x-layouts.app title="Student Details">
 
-<p>
-    <strong>ID:</strong>
-    {{ $student->id }}
-</p>
+    <h1>Student Details</h1>
 
-<p>
-    <strong>Name:</strong>
-    {{ $student->name }}
-</p>
+    <p>
+        <strong>ID:</strong> {{ $student->id }}
+    </p>
 
-<p>
-    <strong>Email:</strong>
-    {{ $student->email }}
-</p>
+    <p>
+        <strong>Name:</strong> {{ $student->name }}
+    </p>
 
-<p>
-    <strong>Phone:</strong>
-    {{ $student->phone }}
-</p>
+    <p>
+        <strong>Email:</strong> {{ $student->email }}
+    </p>
 
-<p>
-    <strong>Address:</strong>
-    {{ $student->address }}
-</p>
+    <p>
+        <strong>Phone:</strong> {{ $student->phone }}
+    </p>
 
-<p>
-    <strong>Date of Birth:</strong>
-    {{ $student->date_of_birth }}
-</p>
+    <p>
+        <strong>Address:</strong> {{ $student->address }}
+    </p>
 
-<br>
+    <p>
+        <strong>Date of Birth:</strong>
+        {{ $student->date_of_birth?->format('d M Y') }}
+    </p>
 
-<a href="/students">
-    Back to Students
-</a>
+    <p>
+        <strong>Age:</strong>
+        {{ $student->age ?? 'Not available' }}
+    </p>
 
-</body>
-</html>
+    <p>
+        <strong>Created:</strong>
+        {{ $student->created_at?->format('d M Y H:i') ?? '—' }}
+    </p>
+
+    <p>
+        <strong>Updated:</strong>
+        {{ $student->updated_at?->format('d M Y H:i') ?? '—' }}
+    </p>
+
+    <a href="{{ route('students.edit', $student) }}" class="btn">
+        Edit Student
+    </a>
+
+    <a href="{{ route('students.index') }}">
+        Back to Students
+    </a>
+
+</x-layouts.app>

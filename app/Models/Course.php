@@ -8,8 +8,19 @@ class Course extends Model
 {
     protected $fillable = [
         'name',
-        'code',
         'description',
-        'credits',
+        'duration',
+        'fee',
+        'difficulty',
+        'is_active',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'duration' => 'integer',
+            'fee' => 'decimal:2',
+            'is_active' => 'boolean',
+        ];
+    }
 }
